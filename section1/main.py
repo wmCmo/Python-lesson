@@ -37,12 +37,21 @@
 todo_list = []
 
 while True:
-    user_action = input("Type add, show, edit, clean or exit:").strip()
+    user_action = input("Type add, show, edit, complete,  clean or exit:").strip()
     
     match user_action:
         case "add":
-            todo = input("Enter a todo:").strip()
+            todo = input("Enter a todo:").strip() + "\n"
+
+            file = open("todos.txt", 'r')
+            todo_list = file.readlines()
+            file.close()
+
             todo_list.append(todo)
+            
+            file = open("todos.txt", 'w')
+            file.writelines(todo_list)
+            file.close()
         case "show" | "display":
             if len(todo_list) == 0:
                 print("No todos to show.")
