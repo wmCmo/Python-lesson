@@ -53,21 +53,12 @@ while True:
 
             todo_list.append(todo)
 
-            file = open("todos.txt", 'w')
-            file.writelines(todo_list)
-            file.close()
+            with open("todos.txt", 'w') as file:
+                file.writelines(todo_list)      
 
         case "show" | "display":
-            file = open("todos.txt","r")
-            todo_list = file.readlines()
-            file.close()
-
-            # new_todos = []
-            # for item in todo_list:
-            #     new_item = item.strip('\n')
-            #     new_todos.append(new_item)
-
-            #new_todos = [item.strip('\n') for item in todo_list]
+            with open("todos.txt","r") as file:
+                todo_list = file.readlines()
 
             if len(todo_list) == 0:
                 print("No todos to show.")
@@ -76,15 +67,23 @@ while True:
                     item = item.strip('\n')
                     print(f"{i+1}-{item}")
         case "edit":
-            for i,item in enumerate(todo_list,1):
-                item = item.strip('\n')
-                print(f"{i}-{item}")
+            with open("todos.txt","r") as file:
+                todo_list = file.readlines()
+            print(todo_list)
+
             change_num = int(input("Choice a number to edit:")) -1
+
             if change_num < len(todo_list):
                 new_todo = input("Enter a new todo:")
-                todo_list[change_num] = new_todo
+                todo_list[change_num] = new_todo + '\n'
+
+            with open('todos.txt','w') as file:
+                file.writelines(todo_list)
+            print(todo_list)
         case "clean":
             todo_list.clear()
+            with open('todos.txt','w') as file:
+                file.writelines(todo_list)
         case "complete":
             while True:
                 for i,t in enumerate(todo_list,start=1):
