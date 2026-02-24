@@ -1,6 +1,6 @@
-# Python Couese in English
+# Python Course in English
 
-- This repository is for my python lerning journey (in English)!!
+- This repository is for my Python learning journey (in English)!!
 
-### Refernce
+### Reference
 - Udemy course ([Learn Python from Beginner to Pro. Build 20 Real-World Apps with Python Including AI Agents with LangChain.](https://www.udemy.com/course/the-python-mega-course/learn/quiz/5764296#content))
