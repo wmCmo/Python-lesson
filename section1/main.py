@@ -37,15 +37,19 @@
 todo_list = []
 
 while True:
+    #Get user input and strip space chars from it
     user_action = input("Type add, show, edit, complete,  clean or exit:").strip()
     
     match user_action:
         case "add":
             todo = input("Enter a todo:").strip() + "\n"
 
-            file = open("todos.txt", 'r')
-            todo_list = file.readlines()
-            file.close()
+            # file = open("todos.txt", 'r')
+            # todo_list = file.readlines()
+            # file.close()
+
+            with open("todos.txt", 'r') as file:
+                todo_list = file.readlines()
 
             todo_list.append(todo)
 
@@ -65,15 +69,16 @@ while True:
 
             #new_todos = [item.strip('\n') for item in todo_list]
 
-            if len(new_todos) == 0:
+            if len(todo_list) == 0:
                 print("No todos to show.")
             else:
-                for i,item in enumerate(new_todos):
+                for i,item in enumerate(todo_list):
                     item = item.strip('\n')
                     print(f"{i+1}-{item}")
         case "edit":
-            for i,t in enumerate(todo_list,1):
-                print(f"{i}-{t}")
+            for i,item in enumerate(todo_list,1):
+                item = item.strip('\n')
+                print(f"{i}-{item}")
             change_num = int(input("Choice a number to edit:")) -1
             if change_num < len(todo_list):
                 new_todo = input("Enter a new todo:")
