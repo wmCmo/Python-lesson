@@ -58,10 +58,18 @@ while True:
             todo_list = file.readlines()
             file.close()
 
-            if len(todo_list) == 0:
+            # new_todos = []
+            # for item in todo_list:
+            #     new_item = item.strip('\n')
+            #     new_todos.append(new_item)
+
+            #new_todos = [item.strip('\n') for item in todo_list]
+
+            if len(new_todos) == 0:
                 print("No todos to show.")
             else:
-                for i,item in enumerate(todo_list):
+                for i,item in enumerate(new_todos):
+                    item = item.strip('\n')
                     print(f"{i+1}-{item}")
         case "edit":
             for i,t in enumerate(todo_list,1):

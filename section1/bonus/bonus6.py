@@ -10,5 +10,9 @@ for content, filename in zip(contents, filenames):
     file.close()
 
 
+# a = "I am a string"\
+#     "on my own"
+# print(a)
+
 
 # for i in range(len(filenames)):
