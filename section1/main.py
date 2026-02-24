@@ -48,71 +48,71 @@ while True:
     #Get user input and strip space chars from it
     user_action = input("Type add, show, edit, complete, clean or exit:").strip()
     
-    match user_action:
-        case "add":
-            todo = input("Enter a todo:").strip() + "\n"
+    if "add" in user_action:
+        todo = user_action[4:] + "\n"
+        
 
-            # file = open("todos.txt", 'r')
-            # todo_list = file.readlines()
-            # file.close()
+        # file = open("todos.txt", 'r')
+        # todo_list = file.readlines()
+        # file.close()
 
-            with open("todos.txt", 'r') as file:
-                todo_list = file.readlines()
+        with open("todos.txt", 'r') as file:
+            todo_list = file.readlines()
 
-            todo_list.append(todo)
+        todo_list.append(todo)
 
-            with open("todos.txt", 'w') as file:
-                file.writelines(todo_list)      
+        with open("todos.txt", 'w') as file:
+            file.writelines(todo_list)      
 
-        case "show" | "display":
-            with open("todos.txt", 'r') as file:
-                todo_list = file.readlines()
+    elif "show" in user_action or "display" in user_action:
+        with open("todos.txt", 'r') as file:
+            todo_list = file.readlines()
+        show_list(todo_list)
+    elif "edit" in user_action:
+        with open("todos.txt", 'r') as file:
+            todo_list = file.readlines()
+        show_list(todo_list)
+
+        change_num = int(input("Choice a number to edit:")) -1
+
+        if change_num < len(todo_list):
+            new_todo = input("Enter a new todo:")
+            todo_list[change_num] = new_todo + '\n'
+
+        with open('todos.txt','w') as file:
+            file.writelines(todo_list)
+        show_list(todo_list)
+    elif "clean" in user_action:
+        todo_list.clear()
+        with open('todos.txt','w') as file:
+            file.writelines(todo_list)
+    elif "complete" in user_action or "c" in user_action:
+        with open("todos.txt", 'r') as file:
+            todo_list = file.readlines()
+        
+        while True:
             show_list(todo_list)
-        case "edit":
-            with open("todos.txt", 'r') as file:
-                todo_list = file.readlines()
-            show_list(todo_list)
-
-            change_num = int(input("Choice a number to edit:")) -1
-
-            if change_num < len(todo_list):
-                new_todo = input("Enter a new todo:")
-                todo_list[change_num] = new_todo + '\n'
-
-            with open('todos.txt','w') as file:
-                file.writelines(todo_list)
-            show_list(todo_list)
-        case "clean":
-            todo_list.clear()
-            with open('todos.txt','w') as file:
-                file.writelines(todo_list)
-        case "complete" | "c":
-            with open("todos.txt", 'r') as file:
-                todo_list = file.readlines()
             
-            while True:
-                show_list(todo_list)
-                
-                delete_num = int(input("Choose a number to remove:"))
-                
-                if delete_num <= len(todo_list) and int(delete_num) > 0:
-                    removed_todo = todo_list[delete_num - 1].strip('\n')
-                    print(f"{removed_todo} was removed from the list.")
-                    todo_list.pop(delete_num - 1)
-                    with open('todos.txt', 'w') as file:
-                        file.writelines(todo_list)
-                else:
-                    print("Invalid number!")
-                    continue
-                
-                order = input("Choose continue or end:")
-                if order.lower() == "end":
-                    break
-        case "exit":
-            break
-        #_ = whatever value that is not matched with the above cases
-        case _:
-            print("hey, you entered an unknown command")
+            delete_num = int(input("Choose a number to remove:"))
+            
+            if delete_num <= len(todo_list) and int(delete_num) > 0:
+                removed_todo = todo_list[delete_num - 1].strip('\n')
+                print(f"{removed_todo} was removed from the list.")
+                todo_list.pop(delete_num - 1)
+                with open('todos.txt', 'w') as file:
+                    file.writelines(todo_list)
+            else:
+                print("Invalid number!")
+                continue
+            
+            order = input("Choose continue or end:")
+            if order.lower() == "end":
+                break
+    elif "exit" in user_action:
+        break
+    #_ = whatever value that is not matched with the above cases
+    else:
+        print("hey, you entered an unknown command")
 print("Bye!")
 
 
