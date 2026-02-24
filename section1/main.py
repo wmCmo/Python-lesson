@@ -48,11 +48,16 @@ while True:
             file.close()
 
             todo_list.append(todo)
-            
+
             file = open("todos.txt", 'w')
             file.writelines(todo_list)
             file.close()
+
         case "show" | "display":
+            file = open("todos.txt","r")
+            todo_list = file.readlines()
+            file.close()
+
             if len(todo_list) == 0:
                 print("No todos to show.")
             else:

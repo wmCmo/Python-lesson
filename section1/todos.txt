@@ -1,4 +1,3 @@
-Throw
-Clean
-Break
-Study
+Study English
+Study programming
+Study something
