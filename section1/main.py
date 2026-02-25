@@ -48,7 +48,7 @@ while True:
     #Get user input and strip space chars from it
     user_action = input("Type add, show, edit, complete, clean or exit:").strip()
     
-    if "add" in user_action:
+    if user_action.startswith("add"):
         todo = user_action[4:] + "\n"
         
 
@@ -64,11 +64,11 @@ while True:
         with open("todos.txt", 'w') as file:
             file.writelines(todo_list)      
 
-    elif "show" in user_action or "display" in user_action:
+    elif user_action.startswith("show") or user_action.startswith("display"):
         with open("todos.txt", 'r') as file:
             todo_list = file.readlines()
         show_list(todo_list)
-    elif "edit" in user_action:
+    elif user_action.startswith("edit"):
         with open("todos.txt", 'r') as file:
             todo_list = file.readlines()
         show_list(todo_list)
@@ -82,11 +82,11 @@ while True:
         with open('todos.txt','w') as file:
             file.writelines(todo_list)
         show_list(todo_list)
-    elif "clean" in user_action:
+    elif user_action.startswith("clean"):
         todo_list.clear()
         with open('todos.txt','w') as file:
             file.writelines(todo_list)
-    elif "complete" in user_action or "c" in user_action:
+    elif user_action.startswith("complete") or user_action.startswith("c"):
         with open("todos.txt", 'r') as file:
             todo_list = file.readlines()
         
@@ -108,7 +108,7 @@ while True:
             order = input("Choose continue or end:")
             if order.lower() == "end":
                 break
-    elif "exit" in user_action:
+    elif user_action.startswith("exit"):
         break
     #_ = whatever value that is not matched with the above cases
     else:
