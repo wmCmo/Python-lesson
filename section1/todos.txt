@@ -5,3 +5,6 @@ Wash a hand
 Cooking
 Go to cafe and drinking a new-released drink
 add something todo
+study
+eat breakfast
+watch python class movie
